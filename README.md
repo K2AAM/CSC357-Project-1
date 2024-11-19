@@ -121,8 +121,8 @@ Contributions are welcome! If you find issues or have suggestions for improvemen
 
 ## Contact
 If you have any questions, feel free to reach out:
-- **Author**: [Your Name]
-- **Email**: [your.email@example.com]
+- **Author**: Adam Morehouse
+- **Email**: k2aam@k2aam.us
 
-Happy coding!
+
 
