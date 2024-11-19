@@ -60,6 +60,11 @@ vector<vector<int>> graph = {
 ```
 The example illustrates a simple network of four nodes with specified distances between them. The routing tables for each node are computed and printed.
 
+## Algorithm Flowchart
+To better understand the flow of the algorithm, here is a flowchart that illustrates the iterative process of the Distance Vector Routing Algorithm:
+
+![Distance Vector Routing Flowchart](Flowchart-DistanceVector.png)
+
 ## Usage
 
 ### Prerequisites
@@ -114,4 +119,10 @@ This project is licensed under the MIT License. Feel free to use, modify, and di
 ## Contributions
 Contributions are welcome! If you find issues or have suggestions for improvements, please open an issue or create a pull request.
 
+## Contact
+If you have any questions, feel free to reach out:
+- **Author**: [Your Name]
+- **Email**: [your.email@example.com]
+
+Happy coding!
 
