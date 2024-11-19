@@ -114,7 +114,7 @@ Destination	Cost	Next Hop
 - Adding error handling to ensure input consistency.
 
 ## License
-This project is licensed under the MIT License. Feel free to use, modify, and distribute it as per the license terms.
+This project is licensed under the GPL 3.0 License. Feel free to use, modify, and distribute it as per the license terms.
 
 ## Contributions
 Contributions are welcome! If you find issues or have suggestions for improvements, please open an issue or create a pull request.
