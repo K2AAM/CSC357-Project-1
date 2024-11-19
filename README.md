@@ -114,10 +114,4 @@ This project is licensed under the MIT License. Feel free to use, modify, and di
 ## Contributions
 Contributions are welcome! If you find issues or have suggestions for improvements, please open an issue or create a pull request.
 
-## Contact
-If you have any questions, feel free to reach out:
-- **Author**: [Your Name]
-- **Email**: [your.email@example.com]
-
-Happy coding!
 
