@@ -37,39 +37,35 @@ Algorithm Documentation:
 
 using namespace std;
 
-#define INF numeric_limits<int>::max()
+#define INF numeric_limits<int>::max() // Define infinity for unreachable nodes
 
-// Documentation of Algorithm:
-// 1. Each node maintains a distance vector for the cost to reach each destination.
-// 2. Nodes share their distance vectors with their neighbors.
-// 3. On receiving distance vectors from neighbors, each node updates its routing table
-//    based on the new information received.
-// 4. The process continues until no updates are required, indicating convergence.
-
+// Node class to store routing information for each node
 class Node {
 public:
-    vector<int> distance_vector;
-    vector<int> next_hop;
+    vector<int> distance_vector; // Distance vector to store cost to reach each node
+    vector<int> next_hop;        // Next hop table to store the next node in the path
 
+    // Constructor to initialize distance vector and next hop table
     Node(int n) {
-        distance_vector = vector<int>(n, INF);
-        next_hop = vector<int>(n, -1);
+        distance_vector = vector<int>(n, INF); // Initialize all distances to infinity
+        next_hop = vector<int>(n, -1);        // Initialize next hop to -1 (no next hop)
     }
 };
 
+// Function to implement the distance vector routing algorithm
 void distanceVectorRouting(vector<vector<int>> &graph) {
-    int n = graph.size();
-    vector<Node> nodes(n, Node(n));
+    int n = graph.size();                // Number of nodes in the network
+    vector<Node> nodes(n, Node(n)); // Create a vector of nodes
 
     // Initialization: Fill initial distances based on the graph.
     for (int i = 0; i < n; i++) {
         for (int j = 0; j < n; j++) {
             if (i == j) {
-                nodes[i].distance_vector[j] = 0;
-                nodes[i].next_hop[j] = j;
+                nodes[i].distance_vector[j] = 0;  // Distance to itself is 0
+                nodes[i].next_hop[j] = j;         // Next hop to itself is itself
             } else if (graph[i][j] != INF) {
-                nodes[i].distance_vector[j] = graph[i][j];
-                nodes[i].next_hop[j] = j;
+                nodes[i].distance_vector[j] = graph[i][j]; // Distance to neighbor is directly from graph
+                nodes[i].next_hop[j] = j;                  // Next hop to neighbor is the neighbor itself
             }
         }
     }
@@ -78,19 +74,20 @@ void distanceVectorRouting(vector<vector<int>> &graph) {
     bool updated;
     do {
         updated = false;
-        for (int i = 0; i < n; i++) {
-            for (int j = 0; j < n; j++) {
-                for (int k = 0; k < n; k++) {
+        for (int i = 0; i < n; i++) {           // For each node i
+            for (int j = 0; j < n; j++) {       // For each destination node j
+                for (int k = 0; k < n; k++) {   // For each neighbor k
+                    // If there is a shorter path to j through neighbor k
                     if (nodes[i].distance_vector[k] != INF && graph[k][j] != INF &&
                         nodes[i].distance_vector[k] + graph[k][j] < nodes[i].distance_vector[j]) {
-                        nodes[i].distance_vector[j] = nodes[i].distance_vector[k] + graph[k][j];
-                        nodes[i].next_hop[j] = nodes[i].next_hop[k];
-                        updated = true;
+                        nodes[i].distance_vector[j] = nodes[i].distance_vector[k] + graph[k][j]; // Update distance
+                        nodes[i].next_hop[j] = nodes[i].next_hop[k];                            // Update next hop
+                        updated = true;                                                           // Mark that an update occurred
                     }
                 }
             }
         }
-    } while (updated);
+    } while (updated); // Continue until no more updates are made
 
     // Print routing tables for each node.
     for (int i = 0; i < n; i++) {
@@ -98,9 +95,10 @@ void distanceVectorRouting(vector<vector<int>> &graph) {
         cout << "Destination\tCost\tNext Hop\n";
         for (int j = 0; j < n; j++) {
             if (nodes[i].distance_vector[j] == INF) {
-                cout << j + 1 << "\t\tINF\t-\n";
+                cout << j + 1 << "\t\tINF\t-\n"; // Unreachable destination
             } else {
-                cout << j + 1 << "\t\t" << nodes[i].distance_vector[j] << "\t" << nodes[i].next_hop[j] + 1 << "\n";
+                cout << j + 1 << "\t\t" << nodes[i].distance_vector[j] << "\t" 
+                     << nodes[i].next_hop[j] + 1 << "\n"; // Print cost and next hop
             }
         }
         cout << "\n";
@@ -111,12 +109,12 @@ int main() {
     // Define the graph as a matrix.
     // Example subnet topology (nodes are 0, 1, 2, 3):
     //
-    //      (1)
-    //    /  |  \
-    // 5 /   |1   \ 3
-    //  /    |     \
+    //     (1)
+    //    / | \
+    //  5 /  |1  \ 3
+    //  /   |   \
     //(0)---(3)----(2)
-    //      2
+    //     2
 
     vector<vector<int>> graph = {
         {0, 5, INF, 1},
@@ -124,7 +122,7 @@ int main() {
         {INF, 3, 0, 2},
         {1, INF, 2, 0}};
 
-    distanceVectorRouting(graph);
+    distanceVectorRouting(graph); 
 
     return 0;
 }
